@@ -16,6 +16,7 @@ export default class About extends Component {
     return (
       <div className="container">
         <h1>About Us</h1>
+        <h2>tested by tpphu</h2>
         <Helmet title="About Us"/>
 
         <p>This project was originally created by Erik Rasmussen

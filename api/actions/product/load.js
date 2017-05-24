@@ -1,3 +1,5 @@
+var rp = require('request-promise');
+
 const initialProducts = [
   {id: 1, color: 'Red', sprocketCount: 7, owner: 'John'},
   {id: 2, color: 'Taupe', sprocketCount: 1, owner: 'George'},
@@ -17,12 +19,13 @@ export function getProducts(req) {
 export default function load(req) {
   return new Promise((resolve, reject) => {
     // make async call to database
-    setTimeout(() => {
-      if (Math.random() < 0.33) {
-        reject('Widget load fails 33% of the time. You were unlucky.');
-      } else {
-        resolve(getProducts(req));
-      }
-    }, 1000); // simulate async load
+    var url = 'https://mapi.sendo.vn/v1/catalog/recomendation?tracking_id=00633019';
+    rp(url).then((html) => {
+      var result = JSON.parse(html);
+      resolve(result.result.data);
+    }).catch((err)=>{
+      reject(err);
+    });
   });
+  return ;
 }

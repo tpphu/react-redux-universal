@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import * as productActions from 'redux/modules/products';
 import {isLoaded, load as loadProducts} from 'redux/modules/products';
 import {initializeWithKey} from 'redux-form';
-import { ProductForm } from 'components';
 import { asyncConnect } from 'redux-async-connect';
 
 @asyncConnect([{
@@ -18,7 +17,6 @@ import { asyncConnect } from 'redux-async-connect';
 @connect(
   state => ({
     products: state.products.data,
-    editing: state.products.editing,
     error: state.products.error,
     loading: state.products.loading
   }),
@@ -29,17 +27,12 @@ export default class Products extends Component {
     error: PropTypes.string,
     loading: PropTypes.bool,
     initializeWithKey: PropTypes.func.isRequired,
-    editing: PropTypes.object.isRequired,
     load: PropTypes.func.isRequired,
     editStart: PropTypes.func.isRequired
   };
 
   render() {
-    const handleEdit = (product) => {
-      const {editStart} = this.props; // eslint-disable-line no-shadow
-      return () => editStart(String(product.id));
-    };
-    const {products, error, editing, loading, load} = this.props;
+    const {products, error, loading, load} = this.props;
     let refreshClassName = 'fa fa-refresh';
     if (loading) {
       refreshClassName += ' fa-spin';
@@ -74,28 +67,22 @@ export default class Products extends Component {
         <table className="table table-striped">
           <thead>
           <tr>
-            <th className={styles.idCol}>ID</th>
-            <th className={styles.colorCol}>Color</th>
-            <th className={styles.sprocketsCol}>Sprockets</th>
-            <th className={styles.ownerCol}>Owner</th>
-            <th className={styles.buttonCol}></th>
+            <th className={styles.colorCol}>Image</th>
+            <th className={styles.sprocketsCol}>Title</th>
           </tr>
           </thead>
           <tbody>
           {
-            products.map((product) => editing[product.id] ?
-              <ProductForm formKey={String(product.id)} key={String(product.id)} initialValues={product}/> :
-              <tr key={product.id}>
-                <td className={styles.idCol}>{product.id}</td>
-                <td className={styles.colorCol}>{product.color}</td>
-                <td className={styles.sprocketsCol}>{product.sprocketCount}</td>
-                <td className={styles.ownerCol}>{product.owner}</td>
-                <td className={styles.buttonCol}>
-                  <button className="btn btn-primary" onClick={handleEdit(product)}>
-                    <i className="fa fa-pencil"/> Edit
-                  </button>
+            products.map((product) => (
+              <tr>
+                <td className={styles.colorCol}>
+                  <img src={product.image} />
                 </td>
-              </tr>)
+                <td className={styles.sprocketsCol}>
+                  <a href={product.url}>{product.title}</a>
+                </td>
+              </tr>
+            ))
           }
           </tbody>
         </table>}
