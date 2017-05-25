@@ -127,6 +127,7 @@ export default class App extends Component {
         <div className={styles.appContent}>
           {this.props.children}
         </div>
+
         <InfoBar/>
 
         <div className="well text-center">
