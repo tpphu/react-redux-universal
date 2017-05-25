@@ -27,7 +27,7 @@ export default class Detail extends Component {
       <div className="container">
         {product &&
         <div>
-          <Image src={product.image[0].large_image} />
+          <Image src={product.image[0].large_image} thumbnail />
           <h1>{product.name}</h1>
         </div>}
       </div>
