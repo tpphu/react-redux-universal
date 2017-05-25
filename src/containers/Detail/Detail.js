@@ -14,7 +14,7 @@ import {Image} from 'react-bootstrap';
 }])
 
 @connect(
-  state => ({product: state.detail.data})//Xu ly cai product replace cho cai detail la mao hiem.
+  state => ({product: state.detail.data}) // Xu ly cai product replace cho cai detail la mao hiem.
 )
 
 export default class Detail extends Component {
