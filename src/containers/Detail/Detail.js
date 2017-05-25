@@ -1,15 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {isLoaded, load} from 'redux/modules/detail';
+import {load} from 'redux/modules/detail';
 import {asyncConnect} from 'redux-async-connect';
 import {Image} from 'react-bootstrap';
 
 @asyncConnect([{
   deferred: true,
-  promise: ({store: {dispatch, getState}}) => {
-    if (!isLoaded(getState())) {
-      return dispatch(load());
-    }
+  promise: ({store: {dispatch}}) => {
+    return dispatch(load());
   }
 }])
 
