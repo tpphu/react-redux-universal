@@ -2,9 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {isLoaded, load} from 'redux/modules/detail';
 import {asyncConnect} from 'redux-async-connect';
-
-import Helmet from 'react-helmet';
-import { InfoBar } from 'components';
+import {Image} from 'react-bootstrap';
 
 @asyncConnect([{
   deferred: true,
@@ -16,22 +14,23 @@ import { InfoBar } from 'components';
 }])
 
 @connect(
-  state => ({detail: state.detail.data})
+  state => ({product: state.detail.data})
 )
 
 export default class Detail extends Component {
   static propTypes = {
-    detail: PropTypes.object,
+    product: PropTypes.object,
     load: PropTypes.func.isRequired
   }
   render() {
-    const {detail} = this.props; // eslint-disable-line no-shadow
+    const {product} = this.props; // eslint-disable-line no-shadow
     return (
       <div className="container">
-        <h1>Detail Product</h1>
-        <InfoBar/>
-        <p>{detail ? detail.cat_path : 'n/a'}</p>
-        <Helmet title="Detail"/>
+        {product &&
+        <div>
+          <Image src={product.image[0].large_image} />
+          <h1>{product.name}</h1>
+        </div>}
       </div>
     );
   }
