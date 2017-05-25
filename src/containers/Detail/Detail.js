@@ -1,14 +1,23 @@
 import React, {Component, PropTypes} from 'react';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {load} from 'redux/modules/detail';
+import {isLoaded, load} from 'redux/modules/detail';
+import {asyncConnect} from 'redux-async-connect';
 
 import Helmet from 'react-helmet';
 import { InfoBar } from 'components';
 
+@asyncConnect([{
+  deferred: true,
+  promise: ({store: {dispatch, getState}}) => {
+    if (!isLoaded(getState())) {
+      return dispatch(load());
+    }
+  }
+}])
+
 @connect(
-    state => ({detail: state.detail.data}),
-    dispatch => bindActionCreators({load}, dispatch))
+  state => ({detail: state.detail.data})
+)
 
 export default class Detail extends Component {
   static propTypes = {
