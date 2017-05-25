@@ -1,4 +1,5 @@
 var rp = require('request-promise');
+var _ = require('lodash');
 var options = {};
 if( process.env.HTTP_PROXY ){
   options['proxy']  = process.env.HTTP_PROXY;
@@ -10,7 +11,7 @@ export default function load(req) {
     var url = 'https://mapi.sendo.vn/v1/catalog/recomendation?tracking_id=00633019';
     r(url).then((html) => {
       var result = JSON.parse(html);
-      resolve(result.result.data);
+      resolve(_.shuffle(result.result.data));
     }).catch((err)=>{
       reject(err);
     });

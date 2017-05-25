@@ -5,6 +5,7 @@ import * as productActions from 'redux/modules/products';
 import {isLoaded, load as loadProducts} from 'redux/modules/products';
 import {initializeWithKey} from 'redux-form';
 import { asyncConnect } from 'redux-async-connect';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 @asyncConnect([{
   deferred: true,
@@ -32,7 +33,7 @@ export default class Products extends Component {
   };
 
   render() {
-    const {products, error, loading, load} = this.props;
+    const {products, loading, load} = this.props;
     let refreshClassName = 'fa fa-refresh';
     if (loading) {
       refreshClassName += ' fa-spin';
@@ -47,45 +48,20 @@ export default class Products extends Component {
           </button>
         </h1>
         <Helmet title="products"/>
-        <p>
-          If you hit refresh on your browser, the data loading will take place on the server before the page is returned.
-          If you navigated here from another page, the data was fetched from the client after the route transition.
-          This uses the decorator method <code>@asyncConnect</code> with the <code>deferred: true</code> flag. To block
-          a route transition until some data is loaded, remove the <code>deffered: true</code> flag.
-          To always render before loading data, even on the server, use <code>componentDidMount</code>.
-        </p>
-        <p>
-          This products are stored in your session, so feel free to edit it and refresh.
-        </p>
-        {error &&
-        <div className="alert alert-danger" role="alert">
-          <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          {' '}
-          {error}
-        </div>}
         {products && products.length &&
-        <table className="table table-striped">
-          <thead>
-          <tr>
-            <th className={styles.colorCol}>Image</th>
-            <th className={styles.sprocketsCol}>Title</th>
-          </tr>
-          </thead>
-          <tbody>
+        <Grid>
+          <Row className="show-grid">
           {
             products.map((product) => (
-              <tr>
-                <td className={styles.colorCol}>
-                  <img src={product.image} />
-                </td>
-                <td className={styles.sprocketsCol}>
-                  <a href={product.url}>{product.title}</a>
-                </td>
-              </tr>
+              <Col sm={6} md={3}>
+                <img src={product.image} />
+                <a href={product.url}>{product.title}</a>
+              </Col>
             ))
           }
-          </tbody>
-        </table>}
+          </Row>
+        </Grid>
+        }
       </div>
     );
   }
