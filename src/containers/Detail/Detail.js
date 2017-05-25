@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {load} from 'redux/modules/detail';
 
 import Helmet from 'react-helmet';
+import { InfoBar } from 'components';
 
 @connect(
     state => ({detail: state.detail.data}),
@@ -19,6 +20,7 @@ export default class Detail extends Component {
     return (
       <div className="container">
         <h1>Detail Product</h1>
+        <InfoBar/>
         <p>{detail ? detail.cat_path : 'n/a'}</p>
         <Helmet title="Detail"/>
       </div>
