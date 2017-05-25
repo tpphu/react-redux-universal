@@ -10,6 +10,7 @@ import {reducer as form} from 'redux-form';
 import info from './info';
 import widgets from './widgets';
 import products from './products';
+import detail from './detail';
 
 export default combineReducers({
   routing: routerReducer,
@@ -24,5 +25,6 @@ export default combineReducers({
   info,
   pagination,
   widgets,
-  products
+  products,
+  detail
 });
