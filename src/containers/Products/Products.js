@@ -6,7 +6,7 @@ import {isLoaded, load as loadProducts} from 'redux/modules/products';
 import {initializeWithKey} from 'redux-form';
 import { asyncConnect } from 'redux-async-connect';
 import { Grid, Row, Col } from 'react-bootstrap';
-import {TopBanner} from 'components';
+import {TopBanner, ShortcutBanner} from 'components';
 
 @asyncConnect([{
   deferred: true,
@@ -50,6 +50,7 @@ export default class Products extends Component {
         </h1>
         <Helmet title="products"/>
         <TopBanner />
+        <ShortcutBanner />
         {products && products.length &&
         <Grid>
           <Row className="show-grid">

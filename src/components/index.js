@@ -13,3 +13,4 @@ export SurveyForm from './SurveyForm/SurveyForm';
 export WidgetForm from './WidgetForm/WidgetForm';
 export ProductForm from './ProductForm/ProductForm';
 export TopBanner from './TopBanner/TopBanner';
+export ShortcutBanner from './ShortcutBanner/ShortcutBanner';

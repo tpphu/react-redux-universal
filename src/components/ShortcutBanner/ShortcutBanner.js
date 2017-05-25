@@ -1,40 +1,37 @@
 import React, {Component} from 'react';
-import {Carousel } from 'react-bootstrap';
+import {Grid, Row, Col } from 'react-bootstrap';
 
-export default class TopBanner extends Component {
+export default class ShortcutBanner extends Component {
 
   render() {
     const lists = [
       {
         title: 'Danh mục',
-        image: 'https://media3.scdn.vn/img2/2016/12_29/T2u6rn_simg_39333c_560x230_maxb.png',
-        description: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+        icon: ''
       },
       {
         title: 'Xu hướng',
-        image: 'https://media3.scdn.vn/img2/2017/1_6/SkhTts_simg_39333c_560x230_maxb.png',
-        description: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+        icon: ''
       },
       {
         title: 'Khuyến mãi',
-        image: 'https://media3.scdn.vn/img2/2016/12_29/rFsy8c_simg_39333c_560x230_maxb.jpg',
-        description: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+        icon: ''
+      },
+      {
+        title: 'Bán chạy',
+        icon: ''
       }
     ];
     return (
       <div>
         {lists && lists.length &&
-          <Carousel>
+          <Grid>
+            <Row className="show-grid">
             {lists.map((item) => (
-              <Carousel.Item>
-                <img width={900} height={500} alt="900x500" src={item.image}/>
-                <Carousel.Caption>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </Carousel.Caption>
-              </Carousel.Item>
+              <Col xs={3}>{item.title}</Col>
             ))}
-          </Carousel>
+            </Row>
+          </Grid>
         }
       </div>
     );
