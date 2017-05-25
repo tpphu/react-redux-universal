@@ -7,6 +7,7 @@ import {Image} from 'react-bootstrap';
 @asyncConnect([{
   deferred: true,
   promise: ({store: {dispatch}}) => {
+    // Cu vao trang la load
     return dispatch(load());
   }
 }])
