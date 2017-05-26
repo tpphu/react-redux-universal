@@ -14,3 +14,4 @@ export WidgetForm from './WidgetForm/WidgetForm';
 export ProductForm from './ProductForm/ProductForm';
 export TopBanner from './TopBanner/TopBanner';
 export ShortcutBanner from './ShortcutBanner/ShortcutBanner';
+export BottomCateMenu from './BottomCateMenu/BottomCateMenu';

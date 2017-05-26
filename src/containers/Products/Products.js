@@ -6,7 +6,7 @@ import {isLoaded, load as loadProducts} from 'redux/modules/products';
 import {initializeWithKey} from 'redux-form';
 import { asyncConnect } from 'redux-async-connect';
 import { Grid, Row, Col } from 'react-bootstrap';
-import {TopBanner, ShortcutBanner} from 'components';
+import {TopBanner, ShortcutBanner, BottomCateMenu} from 'components';
 
 @asyncConnect([{
   deferred: true,
@@ -63,8 +63,8 @@ export default class Products extends Component {
             ))
           }
           </Row>
-        </Grid>
-        }
+        </Grid>}
+        <BottomCateMenu />
       </div>
     );
   }
