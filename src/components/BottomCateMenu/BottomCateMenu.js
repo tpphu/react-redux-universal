@@ -79,6 +79,7 @@ export default class BottomCateMenu extends Component {
     }];
     return (
       <div className="container">
+        <h2>Danh muc</h2>
         <Nav bsStyle="pills" stacked>
           {list.map((cate) => (
             <NavItem href={cate.url}>{cate.label}</NavItem>
